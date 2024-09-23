@@ -1,0 +1,76 @@
+﻿@model Movie
+@{
+    ViewData["Actor"] = "Create An Movie";
+    SelectList cinema = new SelectList(ViewBag.cinema, "Id", "Name");
+    SelectList producer = new SelectList(ViewBag.producer, "Id", "fullName");
+
+
+}
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h2>Add A New Movie</h2>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <form asp-controller="Movies" asp-action="Create">
+                    <div class="form-group">
+                        <label asp-for="ImageUrl" class="control-label"></label>
+                        <input asp-for="ImageUrl" class="form-control" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="startDate" class="control-label"></label>
+                        <input asp-for="startDate" class="form-control" />
+                        <span asp-validation-for="startDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="endDate" class="control-label"></label>
+                        <input asp-for="endDate" class="form-control" />
+                        <span asp-validation-for="endDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="CinemaId" class="control-label"></label>
+                        <select class="form-control" asp-for="CinemaId" asp-items="cinema"></select>
+                        <span asp-validation-for="CinemaId" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="ProducerId" class="control-label"></label>
+                        <select class="form-control" asp-for="ProducerId" asp-items="producer"></select>
+                        <span asp-validation-for="ProducerId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a asp-action="Index" asp-controller="Cinemas" class="btn btn-outline-secondary">ShowAll</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>

@@ -1,3 +1,9 @@
+using eTickets.Data;
+using eTickets.Models;
+using eTickets.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 namespace eTickets
 {
     public class Program
@@ -5,6 +11,14 @@ namespace eTickets
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<AppDbContext>(options => 
+                options.UseSqlServer(builder.Configuration.GetConnectionString("cs"))
+                
+            ) ;
+            builder.Services.AddScoped<IActorServices,ActorServices>();
+            builder.Services.AddScoped<IProducerServices,ProducerServices>();
+            builder.Services.AddScoped<ICinemaServices,CinemaServices>();
+            builder.Services.AddScoped<IMovieServices,MovieServices>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -25,12 +39,14 @@ namespace eTickets
             app.UseRouting();
 
             app.UseAuthorization();
+            AppDbInitial.seed(app);
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿@model Producer
+@{
+    ViewData["Actor"] = "Create An Producer";
+}
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h2>Add A New Producer</h2>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <form asp-controller="Producers" asp-action="Create">
+                    <div class="form-group">
+                        <label asp-for="ProfilePictureUrl" class="control-label"></label>
+                        <input asp-for="ProfilePictureUrl" class="form-control" />
+                        <span asp-validation-for="ProfilePictureUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="fullName" class="control-label"></label>
+                        <input asp-for="fullName" class="form-control" />
+                        <span asp-validation-for="fullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Bio" class="control-label"></label>
+                        <input asp-for="Bio" class="form-control" />
+                        <span asp-validation-for="Bio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a asp-action="Index" asp-controller="Producers" class="btn btn-outline-secondary">ShowAll</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
